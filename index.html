@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganga iPhone — Tienda Oficial &amp; Nuevo Local | Experiencia Apple en San Juan</title>
+  <meta name="description" content="Equipos Apple nuevos sellados, seminuevos certificados, MacBook, Mac mini, Audio y Plan Canje inmediato en San Juan. Financiación con recibo de sueldo." />
+  <link rel="icon" type="image/jpeg" href="LOGO.jpg" />
+
+  <!-- Fonts: Inter & Plus Jakarta Sans (SF Pro Display aesthetic) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            oled: '#050507',
+            titanium: '#121216',
+            appleWhite: '#F5F5F7',
+            appleSilver: '#86868B',
+            appleDark: '#1D1D1F',
+            appleBlue: '#0071E3',
+            gangaLime: '#A3E635',
+            gangaEmerald: '#10B981',
+            gangaIndigo: '#4F46E5',
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- GSAP + ScrollTrigger & Lenis (Deferred for non-blocking render) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body class="bg-oled text-appleWhite selection:bg-gangaLime selection:text-black">
+
+  <!-- =======================================================================
+       1. NAVBAR "DYNAMIC ISLAND" ADAPTATIVA + MONEDA + CARRITO
+       ======================================================================= -->
+  <header class="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6 pointer-events-none">
+    <nav id="dynamic-nav" class="dynamic-island-nav pointer-events-auto max-w-6xl mx-auto rounded-full px-4 sm:px-6 py-2.5 border flex items-center justify-between gap-3">
+      
+      <!-- Left: Ganga iPhone Official SVG Recreation -->
+      <a href="#hero" class="flex items-center gap-2.5 group shrink-0" aria-label="Ganga iPhone Inicio">
+        <svg class="w-8 h-8 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23 20V14C23 9.02944 27.0294 5 32 5C36.9706 5 41 9.02944 41 14V20" class="stroke-current" stroke-width="3.5" stroke-linecap="round"/>
+          <path class="nav-logo-bag fill-white transition-colors duration-300" fill-rule="evenodd" clip-rule="evenodd" d="M16 19C14.3431 19 13 20.3431 13 22L10.2 53C10.04 54.76 11.43 56.25 13.2 56.25H29.5L23.5 34.5L36.5 29.8L38.2 33.8L49.8 29.5L48 22C47.7 20.3431 46.6569 19 45 19H16ZM29.5 26C28.4 26.4 27.8 27.6 28.2 28.7L29.1 31.2L35.2 29L34.3 26.5C33.9 25.4 32.7 24.8 31.6 25.2L29.5 26Z"/>
+          <path class="nav-logo-bag fill-white transition-colors duration-300" d="M40.8 36.2C36.4 36.2 33 39.5 33 43.9C33 48.3 36.4 51.6 40.9 51.6C44.9 51.6 47.6 49.1 47.9 45.2H41.2V42.4H51.4V44.4C51.4 50.6 47.1 55.2 40.9 55.2C34.3 55.2 29.3 50.3 29.3 43.9C29.3 37.5 34.3 32.6 40.9 32.6C45.3 32.6 48.8 34.6 50.5 38L46.9 39.8C45.7 37.5 43.5 36.2 40.8 36.2Z"/>
+        </svg>
+        <div class="flex flex-col leading-none">
+          <span class="nav-logo-ganga font-display font-bold text-base tracking-tight text-white transition-colors duration-300">Ganga</span>
+          <span class="nav-logo-iphone font-display font-bold text-[11px] tracking-tight text-gangaLime -mt-0.5 transition-colors duration-300">iPhone</span>
+        </div>
+      </a>
+
+      <!-- Center: Smooth Navigation Links -->
+      <div class="hidden lg:flex items-center gap-6 text-[13px] font-medium opacity-90">
+        <a href="#destacados" class="hover:opacity-65 transition-opacity">Línea Apple</a>
+        <a href="#catalogo" onclick="filterCatalog('all')" class="hover:opacity-65 transition-opacity">Catálogo</a>
+        <a href="#catalogo" onclick="filterCatalog('seminuevos')" class="hover:opacity-65 transition-opacity">Seminuevos</a>
+        <a href="#plan-canje" class="hover:opacity-65 transition-opacity">Plan Canje</a>
+        <a href="#financiacion" class="hover:opacity-65 transition-opacity">Financiación</a>
+        <a href="#nuevo-local" class="hover:opacity-65 transition-opacity">Nuevo Local</a>
+      </div>
+
+      <!-- Right: Live Currency Switch + Shopping Bag -->
+      <div class="flex items-center gap-2 shrink-0">
+        <div class="nav-currency-pill flex items-center bg-white/[0.08] border border-white/10 rounded-full p-0.5 text-[11px] font-semibold" role="group" aria-label="Selector de moneda">
+          <button type="button" id="btn-currency-usd" onclick="setCurrency('USD')" class="nav-currency-active px-2.5 py-1 rounded-full transition-all duration-200 bg-white text-black shadow-sm">
+            USD
+          </button>
+          <button type="button" id="btn-currency-ars" onclick="setCurrency('ARS')" class="px-2.5 py-1 rounded-full transition-all duration-200 text-current opacity-75 hover:opacity-100">
+            ARS
+          </button>
+        </div>
+
+        <button type="button" onclick="toggleCart(true)" class="nav-icon-btn relative flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.08] border border-white/15 hover:scale-105 transition-all" aria-label="Abrir bolsa de compras">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 8h12l1 12H5L6 8Z"/>
+            <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+          </svg>
+          <span id="cart-badge" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-gangaLime text-black text-[10px] font-bold flex items-center justify-center shadow-md">
+            0
+          </span>
+        </button>
+
+        <button type="button" id="mobile-menu-btn" onclick="toggleMobileMenu()" class="nav-icon-btn lg:hidden flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.08] border border-white/15" aria-label="Menú">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M4 8h16M4 16h16"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Dropdown Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden pointer-events-auto max-w-md mx-auto mt-2 rounded-3xl glass-panel-dark p-4 border border-white/15 shadow-2xl">
+      <div class="flex flex-col gap-1 text-sm font-medium text-appleWhite">
+        <a href="#destacados" onclick="toggleMobileMenu(false)" class="px-4 py-2.5 rounded-2xl hover:bg-white/[0.08] transition-colors">Línea Apple</a>
+        <a href="#catalogo" onclick="filterCatalog('all'); toggleMobileMenu(false)" class="px-4 py-2.5 rounded-2xl hover:bg-white/[0.08] transition-colors">Catálogo Completo</a>
+        <a href="#catalogo" onclick="filterCatalog('seminuevos'); toggleMobileMenu(false)" class="px-4 py-2.5 rounded-2xl hover:bg-white/[0.08] transition-colors">Seminuevos Certificados</a>
+        <a href="#plan-canje" onclick="toggleMobileMenu(false)" class="px-4 py-2.5 rounded-2xl hover:bg-white/[0.08] transition-colors">Cotizador Plan Canje</a>
+        <a href="#financiacion" onclick="toggleMobileMenu(false)" class="px-4 py-2.5 rounded-2xl hover:bg-white/[0.08] transition-colors">Financiación &amp; Pagos</a>
+        <a href="#nuevo-local" onclick="toggleMobileMenu(false)" class="px-4 py-2.5 rounded-2xl hover:bg-white/[0.08] transition-colors">Nuevo Local en San Juan</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- =====================================================================
+         2. HERO KEYNOTE AURORA (DARK OLED + COLOR VIVO + HARDWARE REAL)
+         ===================================================================== -->
+    <section id="hero" class="aurora-hero-bg relative pt-28 pb-16 sm:pt-32 sm:pb-24 px-4 sm:px-6 overflow-hidden">
+      <div class="max-w-7xl mx-auto">
+        <!-- Top Copy Centered -->
+        <div class="max-w-4xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-14">
+          <div class="hero-reveal inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-badge mb-6">
+            <span class="w-2 h-2 rounded-full bg-gangaLime pulse-dot"></span>
+            <span class="text-[11px] sm:text-xs font-medium tracking-[0.12em] uppercase text-appleWhite/90">
+              Nuevo Local Comercial &bull; Experiencia Apple en San Juan
+            </span>
+          </div>
+
+          <h1 class="hero-reveal font-display font-bold text-4xl sm:text-6xl lg:text-[5rem] leading-[1.02] tracking-apple-tight text-titanium-gradient mb-5">
+            Tu próximo iPhone.<br />
+            <span class="text-aurora-accent">Más cerca que nunca.</span>
+          </h1>
+
+          <p class="hero-reveal max-w-2xl text-base sm:text-lg text-zinc-300 leading-relaxed mb-8">
+            Equipos nuevos sellados, seminuevos certificados y todo el ecosistema Apple. Entregá tu celular actual en parte de pago o financiá con tu recibo de sueldo.
+          </p>
+
+          <div class="hero-reveal flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto">
+            <a href="#catalogo" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-appleWhite text-black font-semibold text-sm sm:text-base hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_0_32px_rgba(255,255,255,0.2)]">
+              Explorar Catálogo
+            </a>
+            <a href="#plan-canje" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full glass-badge text-appleWhite font-medium text-sm sm:text-base hover:bg-white/[0.12] transition-all">
+              <span>Cotizar mi Usado (Plan Canje)</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M13 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Flagship Bento Hero Showcase with Real Apple Product Photography -->
+        <div class="hero-device grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          
+          <!-- Main Flagship Feature Card -->
+          <div class="lg:col-span-7 rounded-[2rem] bg-white border border-white/20 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.65)] relative group">
+            <div class="sm:w-1/2 text-left space-y-4 z-10">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f5f5f7] text-[#1d1d1f] text-[11px] font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-gangaEmerald"></span>
+                Nuevo Ingreso Pro
+              </span>
+              <h2 class="font-display text-3xl sm:text-4xl font-bold text-[#1d1d1f] tracking-tight leading-tight">
+                Serie Pro.<br/>Diseño y cámara sin límites.
+              </h2>
+              <p class="text-sm text-[#6e6e73] leading-relaxed">
+                Equipos sellados de fábrica con garantía oficial Apple. Entrega inmediata en nuestro nuevo Showroom.
+              </p>
+              <div class="pt-1 flex flex-wrap gap-2.5">
+                <a href="#catalogo" onclick="filterCatalog('sellados')" class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#1d1d1f] text-white text-xs font-semibold hover:bg-black transition-all">
+                  Ver iPhone Nuevos
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+            <div class="sm:w-1/2 flex items-center justify-center">
+              <img src="iphone-card-40-18pro-202609.webp" alt="iPhone Pro Flagship" fetchpriority="high" decoding="async" class="w-56 sm:w-64 h-auto object-contain transition-transform duration-500 group-hover:scale-105" />
+            </div>
+          </div>
+
+          <!-- Right Column: 2 Vibrant Editorial Cards -->
+          <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-5">
+            <!-- Vibrant Card 1: iPhone 17 / Colores Vivos -->
+            <a href="#catalogo" onclick="filterCatalog('sellados')" class="rounded-[2rem] bg-gradient-to-br from-[#ede9fe] via-[#f5f3ff] to-white p-6 flex items-center justify-between gap-4 overflow-hidden group shadow-xl border border-white/20">
+              <div class="space-y-1.5 text-left">
+                <span class="text-[11px] uppercase tracking-wider font-semibold text-gangaIndigo">Nueva Generación</span>
+                <h3 class="font-display text-xl sm:text-2xl font-bold text-[#1d1d1f] tracking-tight">iPhone 17 &amp; 16</h3>
+                <p class="text-xs text-[#6e6e73]">Colores vibrantes, chip de última generación.</p>
+              </div>
+              <img src="iphone-card-40-17-202509.webp" alt="iPhone 17 Lavanda" decoding="async" class="w-24 sm:w-28 h-28 object-contain shrink-0 transition-transform duration-500 group-hover:scale-110" />
+            </a>
+
+            <!-- Vibrant Card 2: Mac & Audio Ecosystem -->
+            <a href="#catalogo" onclick="filterCatalog('mac-ipad')" class="rounded-[2rem] bg-gradient-to-br from-[#ecfdf5] via-[#f0fdf4] to-white p-6 flex items-center justify-between gap-4 overflow-hidden group shadow-xl border border-white/20">
+              <div class="space-y-1.5 text-left">
+                <span class="text-[11px] uppercase tracking-wider font-semibold text-emerald-700">Ecosistema Pro</span>
+                <h3 class="font-display text-xl sm:text-2xl font-bold text-[#1d1d1f] tracking-tight">MacBook, Mac mini &amp; Audio</h3>
+                <p class="text-xs text-[#6e6e73]">Potencia Apple Silicon y sonido espacial.</p>
+              </div>
+              <img src="airpods-max-select-202409-blue.webp" alt="AirPods Max Azul" decoding="async" class="w-24 sm:w-28 h-24 object-contain shrink-0 transition-transform duration-500 group-hover:scale-110" />
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. APPLE.COM LINEUP EDITORIAL GALLERY (COLORFUL & FLUID CAROUSEL)
+         ===================================================================== -->
+    <section id="destacados" class="bg-white text-appleDark py-16 sm:py-24 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#6e6e73] font-semibold">Conocé la línea</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-apple-tight text-[#1d1d1f] mt-1.5">
+            Diseño vivo. Elegí el tuyo.
+          </h2>
+        </div>
+
+        <!-- Smooth Carousel Controls -->
+        <div class="flex items-center gap-2 self-start sm:self-auto">
+          <button type="button" onclick="scrollLineup(-1)" class="w-10 h-10 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] flex items-center justify-center transition-colors" aria-label="Anterior">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" onclick="scrollLineup(1)" class="w-10 h-10 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] flex items-center justify-center transition-colors" aria-label="Siguiente">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Horizontal Snap Track (100% Native GPU Scroll, Zero Jank) -->
+      <div id="lineup-carousel" class="apple-carousel-track flex gap-5 overflow-x-auto no-scrollbar px-4 sm:px-6 lg:px-[max(1.5rem,calc((100vw-80rem)/2))] pb-4">
+        
+        <!-- Editorial Card 1: iPhone 17 -->
+        <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 17')" class="apple-carousel-card shrink-0 w-[280px] sm:w-[330px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+          <div class="aspect-[4/5] relative overflow-hidden">
+            <img src="iphone_17__cuyljf3ic8k2_large.jpg" alt="iPhone 17" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+              <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Nuevo Sellado</span>
+              <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17</h3>
+              <p class="text-xs text-white/90 mt-1">Color, velocidad y cámara Pro.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Editorial Card 2: iPhone 17 Air -->
+        <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 17 Air')" class="apple-carousel-card shrink-0 w-[280px] sm:w-[330px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+          <div class="aspect-[4/5] relative overflow-hidden">
+            <img src="iphone_air__behibcx1cfde_large.jpg" alt="iPhone Air" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+              <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Ultradelgado</span>
+              <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17 Air</h3>
+              <p class="text-xs text-white/90 mt-1">El iPhone más fino de la historia.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Editorial Card 3: iPhone 16 Plus -->
+        <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 16')" class="apple-carousel-card shrink-0 w-[280px] sm:w-[330px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+          <div class="aspect-[4/5] relative overflow-hidden">
+            <img src="iphone_16__feoq604c6fe6_large.jpg" alt="iPhone 16" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+              <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Más Elegido</span>
+              <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 16 &amp; Plus</h3>
+              <p class="text-xs text-white/90 mt-1">Control de cámara y chip A18.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Editorial Card 4: iPhone 17e -->
+        <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 17e')" class="apple-carousel-card shrink-0 w-[280px] sm:w-[330px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+          <div class="aspect-[4/5] relative overflow-hidden">
+            <img src="iphone_17e__fes2iqci8aaa_large.jpg" alt="iPhone 17e" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+              <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Smart Choice</span>
+              <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17e</h3>
+              <p class="text-xs text-white/90 mt-1">Potencia Apple al mejor precio.</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Editorial Card 5: Seminuevos Certificados -->
+        <a href="#catalogo" onclick="filterCatalog('seminuevos')" class="apple-carousel-card shrink-0 w-[280px] sm:w-[330px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#121216] text-white p-7 flex flex-col justify-between">
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gangaLime/15 text-gangaLime text-[11px] font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-gangaLime"></span>
+              Certificados +30 Puntos
+            </span>
+            <h3 class="font-display text-2xl font-bold mt-4">Seminuevos Seleccionados</h3>
+            <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+              Equipos testeados, 100% originales con garantía escrita y salud de batería verificada.
+            </p>
+          </div>
+          <div class="pt-6">
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-gangaLime group-hover:translate-x-1 transition-transform">
+              Explorar Seminuevos
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. CATÁLOGO CLARO ESTILO APPLE STORE (FONDO #F5F5F7 + FOTOS REALES)
+         ===================================================================== -->
+    <section id="catalogo" data-nav-theme="light" class="bg-appleWhite text-appleDark py-20 sm:py-28 px-4 sm:px-6">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Catalog Header + Live Search -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+          <div>
+            <span class="text-xs uppercase tracking-[0.16em] text-[#6e6e73] font-semibold">Apple Store Experience</span>
+            <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-apple-tight text-[#1d1d1f] mt-1.5">
+              Catálogo Oficial.
+            </h2>
+            <p class="text-sm sm:text-base text-[#6e6e73] mt-2">
+              Elegí modelo, acabado y almacenamiento. Los precios se actualizan al instante en USD o ARS.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
+            <!-- Live Search Bar -->
+            <div class="relative flex-1 sm:w-72">
+              <svg class="w-4 h-4 text-[#6e6e73] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/>
+                <path d="M21 21l-4.35-4.35"/>
+              </svg>
+              <input id="catalog-search" type="search" oninput="handleSearch(this.value)" placeholder="Buscar iPhone, MacBook, AirPods..." class="w-full bg-white border border-black/10 rounded-full pl-10 pr-4 py-2.5 text-sm text-[#1d1d1f] placeholder:text-[#86868b] focus:outline-none focus:border-appleBlue shadow-sm transition-colors" />
+            </div>
+
+            <!-- Live Currency Reference Pill -->
+            <div class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white border border-black/10 text-xs text-[#6e6e73] shadow-sm shrink-0">
+              <span class="w-2 h-2 rounded-full bg-[#65a30d]"></span>
+              <span>En <strong id="catalog-currency-label" class="text-[#1d1d1f]">USD</strong> &bull; 1 USD = <span id="catalog-rate-label">$1.200</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Pills + Result Count -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 mb-8 border-b border-black/10">
+          <div id="catalog-filters" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+            <button type="button" data-filter="all" onclick="filterCatalog('all')" class="filter-pill active shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all bg-[#1d1d1f] text-white shadow-sm">
+              Todos
+            </button>
+            <button type="button" data-filter="sellados" onclick="filterCatalog('sellados')" class="filter-pill shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all bg-white text-[#6e6e73] border border-black/10 hover:text-[#1d1d1f]">
+              iPhone Nuevos
+            </button>
+            <button type="button" data-filter="seminuevos" onclick="filterCatalog('seminuevos')" class="filter-pill shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all bg-white text-[#6e6e73] border border-black/10 hover:text-[#1d1d1f]">
+              iPhone Seminuevos
+            </button>
+            <button type="button" data-filter="mac-ipad" onclick="filterCatalog('mac-ipad')" class="filter-pill shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all bg-white text-[#6e6e73] border border-black/10 hover:text-[#1d1d1f]">
+              Mac &amp; Mac mini
+            </button>
+            <button type="button" data-filter="airpods-watch" onclick="filterCatalog('airpods-watch')" class="filter-pill shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all bg-white text-[#6e6e73] border border-black/10 hover:text-[#1d1d1f]">
+              Audio &amp; Watch
+            </button>
+            <button type="button" data-filter="accesorios" onclick="filterCatalog('accesorios')" class="filter-pill shrink-0 px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all bg-white text-[#6e6e73] border border-black/10 hover:text-[#1d1d1f]">
+              Fundas &amp; Carga
+            </button>
+          </div>
+          <span id="catalog-count" class="text-xs font-medium text-[#6e6e73] shrink-0">Mostrando 13 equipos</span>
+        </div>
+
+        <!-- Product Grid (Seamless Pure White Apple Store Cards) -->
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Rendered by app.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         5. COTIZADOR INTERACTIVO DE "PLAN CANJE" (HIGH CONTRAST DARK MODULE)
+         ===================================================================== -->
+    <section id="plan-canje" class="aurora-tradein-bg text-appleWhite py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-xs uppercase tracking-[0.18em] text-gangaLime font-semibold">Plan Canje Inteligente</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-apple-tight text-titanium-gradient mt-2 mb-4">
+            Tu celular actual vale oro.
+          </h2>
+          <p class="text-zinc-400 text-base sm:text-lg">
+            Calculá cuánto tomamos por tu iPhone hoy y restalo en el acto de tu próximo equipo.
+          </p>
+        </div>
+
+        <!-- Frosted Dark Glass Module -->
+        <div class="glass-panel-dark rounded-[2rem] p-6 sm:p-10 lg:p-12 shadow-2xl">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            
+            <!-- Left: 3-Step Interactive Controls -->
+            <div class="lg:col-span-7 space-y-8">
+              <div>
+                <label class="block text-xs uppercase tracking-[0.14em] text-zinc-400 font-semibold mb-3">
+                  1. ¿Qué iPhone tenés hoy?
+                </label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div class="sm:col-span-2">
+                    <select id="tradein-model" onchange="updateTradeIn()" class="w-full bg-[#1a1a20] border border-white/15 rounded-2xl px-4 py-3.5 text-sm text-appleWhite focus:outline-none focus:border-gangaLime transition-colors">
+                    </select>
+                  </div>
+                  <div>
+                    <select id="tradein-capacity" onchange="updateTradeIn()" class="w-full bg-[#1a1a20] border border-white/15 rounded-2xl px-4 py-3.5 text-sm text-appleWhite focus:outline-none focus:border-gangaLime transition-colors">
+                      <option value="64GB">64GB</option>
+                      <option value="128GB" selected>128GB</option>
+                      <option value="256GB">256GB</option>
+                      <option value="512GB">512GB</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <label for="tradein-battery" class="text-xs uppercase tracking-[0.14em] text-zinc-400 font-semibold">
+                    2. ¿En qué porcentaje está tu batería?
+                  </label>
+                  <span id="tradein-battery-value" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.08] border border-white/10 text-xs font-semibold text-gangaLime">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="2" y="7" width="18" height="10" rx="2"/>
+                      <path d="M22 10v4"/>
+                    </svg>
+                    <span>90%</span>
+                  </span>
+                </div>
+
+                <input id="tradein-battery" type="range" min="70" max="100" value="90" oninput="updateTradeIn()" class="apple-slider" />
+                <div class="flex justify-between text-[11px] text-zinc-400">
+                  <span>70% (Service)</span>
+                  <span>85% (Óptima)</span>
+                  <span>100% (Nueva)</span>
+                </div>
+
+                <div class="pt-2">
+                  <span class="block text-xs text-zinc-400 mb-2.5">Estado estético general:</span>
+                  <div class="grid grid-cols-2 gap-3">
+                    <button type="button" id="cond-impecable" onclick="setTradeInCondition('impecable')" class="py-3 px-4 rounded-2xl border text-xs sm:text-sm font-medium transition-all bg-appleWhite text-black border-appleWhite">
+                      Impecable (Sin marcas)
+                    </button>
+                    <button type="button" id="cond-detalles" onclick="setTradeInCondition('detalles')" class="py-3 px-4 rounded-2xl border text-xs sm:text-sm font-medium transition-all bg-[#1a1a20] text-zinc-400 border-white/10 hover:text-appleWhite">
+                      Detalles de uso
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label for="tradein-target" class="block text-xs uppercase tracking-[0.14em] text-zinc-400 font-semibold mb-3">
+                  3. ¿A qué modelo querés saltar?
+                </label>
+                <select id="tradein-target" onchange="updateTradeIn()" class="w-full bg-[#1a1a20] border border-white/15 rounded-2xl px-4 py-3.5 text-sm text-appleWhite focus:outline-none focus:border-gangaLime transition-colors">
+                </select>
+              </div>
+            </div>
+
+            <!-- Right: Live Summary Card -->
+            <div class="lg:col-span-5 bg-[#0b0b0f] border border-white/15 rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+              <div>
+                <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                  <span class="text-xs uppercase tracking-[0.14em] text-zinc-400 font-semibold">Resumen de Canje</span>
+                  <span class="w-2 h-2 rounded-full bg-gangaLime"></span>
+                </div>
+
+                <div class="py-5 space-y-4">
+                  <div class="flex items-center justify-between text-sm gap-2">
+                    <span class="text-zinc-400">Equipo destino</span>
+                    <span id="summary-target-name" class="font-medium text-appleWhite text-right">—</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-zinc-400">Precio de lista</span>
+                    <span id="summary-target-price" class="font-medium text-appleWhite">—</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-zinc-400">Valor Estimado de Toma</span>
+                    <span id="summary-tradein-value" class="font-semibold text-gangaLime">—</span>
+                  </div>
+                </div>
+
+                <div class="pt-4 border-t border-white/10 flex items-baseline justify-between gap-2">
+                  <span class="text-sm font-medium text-appleWhite">Diferencia a pagar</span>
+                  <span id="summary-difference" class="font-display text-3xl sm:text-4xl font-bold text-appleWhite tracking-tight">—</span>
+                </div>
+                <p class="text-[11px] text-zinc-400 mt-2 leading-relaxed">
+                  * Cotización estimada sujeta a revisión técnica de 5 minutos en nuestro nuevo local.
+                </p>
+              </div>
+
+              <div class="space-y-3 pt-2">
+                <button type="button" onclick="applyTradeInToCart()" class="w-full py-3.5 px-5 rounded-full bg-gangaLime text-black font-semibold text-sm hover:brightness-105 hover:scale-[1.01] active:scale-[0.99] transition-all">
+                  Aplicar Canje a mi Bolsa de Compras
+                </button>
+                <a id="tradein-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-5 rounded-full bg-white/[0.08] border border-white/15 text-appleWhite font-medium text-sm flex items-center justify-center gap-2 hover:bg-white/[0.14] transition-all">
+                  <span>Consultar Canje por WhatsApp</span>
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 17L17 7M7 7h10v10"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         6. MEDIOS DE PAGO & FINANCIACIÓN (MODO CLARO APPLE VIVO)
+         ===================================================================== -->
+    <section id="financiacion" data-nav-theme="light" class="bg-appleWhite text-appleDark py-24 sm:py-28 px-4 sm:px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="max-w-3xl mb-14">
+          <span class="text-xs uppercase tracking-[0.18em] text-[#6e6e73] font-semibold">Transparencia Comercial</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-apple-tight text-[#1D1D1F] mt-2">
+            Múltiples formas de llegar a tu iPhone.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+          
+          <!-- 1. Featured Wide Card: Recibo de Sueldo -->
+          <article class="md:col-span-4 bento-light-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+            <div class="flex items-start justify-between gap-4 mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-[#ecfccb] flex items-center justify-center text-[#3f6212]">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
+                  <path d="M14 2v6h6"/>
+                  <path d="M8 13h8M8 17h5"/>
+                </svg>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ecfccb] text-[#3f6212] text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#65a30d]"></span>
+                Aprobación Rápida en San Juan
+              </span>
+            </div>
+
+            <div>
+              <h3 class="font-display text-2xl sm:text-3xl font-bold text-[#1D1D1F] tracking-tight mb-3">
+                Financiación con Recibo de Sueldo
+              </h3>
+              <p class="text-[#6e6e73] text-base sm:text-lg leading-relaxed max-w-xl mb-8">
+                Llevá tu iPhone nuevo o seminuevo hoy presentando tu último recibo de sueldo y DNI. Cuotas claras, aprobación ágil en el local y entrega inmediata.
+              </p>
+              <a href="https://wa.me/542645320505?text=Hola%20Ganga%20iPhone!%20Quiero%20consultar%20los%20requisitos%20para%20financiar%20un%20iPhone%20con%20mi%20recibo%20de%20sueldo." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#1D1D1F] text-white text-sm font-semibold hover:bg-black transition-all">
+                <span>Consultar requisitos con mi recibo</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M13 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- 2. Plan Canje Inmediato -->
+          <article class="md:col-span-2 bento-light-card rounded-3xl p-8 flex flex-col justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-[#eef2ff] flex items-center justify-center text-[#4f46e5] mb-6">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                <path d="M3 3v5h5"/>
+                <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+                <path d="M16 16h5v5"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold text-[#1D1D1F] tracking-tight mb-2">
+                Plan Canje Inmediato
+              </h3>
+              <p class="text-[#6e6e73] text-sm leading-relaxed">
+                Entregás tu equipo actual como parte de pago y solo abonás la diferencia en el acto.
+              </p>
+            </div>
+          </article>
+
+          <!-- 3. Efectivo (USD / Pesos) -->
+          <article class="md:col-span-2 bento-light-card rounded-3xl p-8 flex flex-col justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-[#ecfdf5] flex items-center justify-center text-[#059669] mb-6">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                <circle cx="12" cy="12" r="2.5"/>
+                <path d="M6 12h.01M18 12h.01"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold text-[#1D1D1F] tracking-tight mb-2">
+                Efectivo (USD / Pesos)
+              </h3>
+              <p class="text-[#6e6e73] text-sm leading-relaxed">
+                Cotización preferencial en billete dólar cara grande o pesos argentinos en el showroom.
+              </p>
+            </div>
+          </article>
+
+          <!-- 4. Transferencia (USD / Pesos) -->
+          <article class="md:col-span-2 bento-light-card rounded-3xl p-8 flex flex-col justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] flex items-center justify-center text-[#2563eb] mb-6">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 7L7 17M17 7H8M17 7v9"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold text-[#1D1D1F] tracking-tight mb-2">
+                Transferencia (USD / Pesos)
+              </h3>
+              <p class="text-[#6e6e73] text-sm leading-relaxed">
+                Aceptamos transferencias bancarias en pesos o dólares y billeteras digitales al instante.
+              </p>
+            </div>
+          </article>
+
+          <!-- 5. Tarjetas Bancarias -->
+          <article class="md:col-span-2 bento-light-card rounded-3xl p-8 flex flex-col justify-between">
+            <div class="w-12 h-12 rounded-2xl bg-[#faf5ff] flex items-center justify-center text-[#7c3aed] mb-6">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2"/>
+                <path d="M2 10h20"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold text-[#1D1D1F] tracking-tight mb-2">
+                Tarjetas Bancarias
+              </h3>
+              <p class="text-[#6e6e73] text-sm leading-relaxed">
+                Financiación en cuotas fijas con tarjetas de crédito Visa, Mastercard y bancos seleccionados.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         7. NUEVO LOCAL COMERCIAL, UBICACIÓN Y REDES SOCIALES
+         ===================================================================== -->
+    <section id="nuevo-local" data-nav-theme="light" class="bg-white text-appleDark py-20 sm:py-28 px-4 sm:px-6 border-t border-black/5">
+      <div class="max-w-7xl mx-auto">
+        <div class="rounded-[2.25rem] bg-[#f5f5f7] p-6 sm:p-10 lg:p-14 border border-black/5">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <!-- Editorial Info -->
+            <div class="lg:col-span-6 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-[#1D1D1F] text-xs font-semibold shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-[#65a30d]"></span>
+                Inauguración Nuevo Showroom
+              </div>
+
+              <h2 class="font-display text-3xl sm:text-5xl font-bold text-[#1D1D1F] tracking-apple-tight">
+                Vení a vivir la experiencia Apple en San Juan.
+              </h2>
+
+              <p class="text-[#6e6e73] text-base sm:text-lg leading-relaxed">
+                Estrenamos nuestro nuevo local para que pruebes cada equipo con comodidad, seguridad privada y asesoramiento uno a uno.
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-[#1D1D1F] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                  </svg>
+                  <div>
+                    <p class="text-sm font-semibold text-[#1D1D1F]">Horarios de Atención</p>
+                    <p class="text-xs text-[#6e6e73]">Lun a Vie: 9:30 a 13:30 / 17:00 a 21:00<br/>Sábados: 10:00 a 14:00 hs</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-[#1D1D1F] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>
+                  </svg>
+                  <div>
+                    <p class="text-sm font-semibold text-[#1D1D1F]">Seguridad Privada</p>
+                    <p class="text-xs text-[#6e6e73]">Showroom exclusivo con atención privada y reserva previa.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-[#1D1D1F] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                  <div>
+                    <p class="text-sm font-semibold text-[#1D1D1F]">Asesoramiento Experto</p>
+                    <p class="text-xs text-[#6e6e73]">Te ayudamos a elegir el equipo ideal según tu uso.</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-[#1D1D1F] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 17l6-6-6-6"/>
+                    <path d="M12 19h8"/>
+                  </svg>
+                  <div>
+                    <p class="text-sm font-semibold text-[#1D1D1F]">Transferencia Sin Cargo</p>
+                    <p class="text-xs text-[#6e6e73]">Pasamos tus datos, fotos y WhatsApp en el local sin costo.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-3 pt-4">
+                <a href="https://wa.me/542645320505?text=Hola%20Ganga%20iPhone!%20Quiero%20coordinar%20una%20visita%20al%20nuevo%20local%20y%20recibir%20atenci%C3%B3n%20personalizada." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#1D1D1F] text-white text-sm font-semibold hover:bg-black transition-all">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/>
+                  </svg>
+                  <span>WhatsApp (+54 9 264 532-0505)</span>
+                </a>
+
+                <a href="https://www.instagram.com/gangaiphone" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-[#1D1D1F] border border-black/10 text-sm font-semibold hover:bg-zinc-100 transition-all">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M17.5 6.5h.01"/>
+                  </svg>
+                  <span>@gangaiphone</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Stylized Dark Minimalist Location Map Card -->
+            <div class="lg:col-span-6">
+              <div class="relative rounded-3xl bg-[#121216] text-appleWhite p-6 sm:p-8 min-h-[380px] flex flex-col justify-between overflow-hidden shadow-xl">
+                <svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" viewBox="0 0 600 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 90H600M0 190H600M0 290H600M0 370H600" stroke="#86868B" stroke-width="0.8"/>
+                  <path d="M110 0V420M250 0V420M390 0V420M510 0V420" stroke="#86868B" stroke-width="0.8"/>
+                  <path d="M110 190L390 90" stroke="#A3E635" stroke-width="1.2" stroke-dasharray="4 4"/>
+                </svg>
+
+                <div class="relative z-10 flex items-center justify-between">
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.08] border border-white/10 text-xs font-medium">
+                    <svg class="w-3.5 h-3.5 text-gangaLime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M12 22s-7-5.5-7-12a7 7 0 1 1 14 0c0 6.5-7 12-7 12Z"/>
+                      <circle cx="12" cy="10" r="2.5"/>
+                    </svg>
+                    <span>San Juan, Argentina</span>
+                  </div>
+                  <img src="LOGO.jpg" alt="Ganga iPhone Logo" loading="lazy" decoding="async" class="w-10 h-10 rounded-xl object-cover border border-white/15 shadow-md" />
+                </div>
+
+                <div class="relative z-10 my-10 flex flex-col items-center justify-center">
+                  <div class="relative flex items-center justify-center">
+                    <span class="absolute w-16 h-16 rounded-full bg-gangaLime/20 animate-ping"></span>
+                    <span class="w-12 h-12 rounded-full bg-[#1c1c22] border-2 border-gangaLime flex items-center justify-center shadow-2xl">
+                      <svg class="w-5 h-5 text-gangaLime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22s-7-5.5-7-12a7 7 0 1 1 14 0c0 6.5-7 12-7 12Z"/>
+                        <circle cx="12" cy="10" r="2.5"/>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="mt-4 px-4 py-2 rounded-2xl bg-black/75 border border-white/10 text-center">
+                    <p class="text-xs font-semibold text-appleWhite">Nuevo Showroom Ganga iPhone</p>
+                    <p class="text-[11px] text-zinc-400">Zona Centro &bull; San Juan Capital</p>
+                  </div>
+                </div>
+
+                <div class="relative z-10 flex items-center justify-between pt-4 border-t border-white/10 text-xs">
+                  <span class="text-zinc-400">Solicitá la ubicación exacta por WhatsApp</span>
+                  <a href="https://wa.me/542645320505?text=Hola%20Ganga%20iPhone!%20Me%20pasan%20la%20ubicaci%C3%B3n%20exacta%20del%20nuevo%20local%3F" target="_blank" rel="noopener noreferrer" class="font-semibold text-gangaLime hover:underline inline-flex items-center gap-1">
+                    Pedir pin
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Minimalist Footer -->
+    <footer data-nav-theme="light" class="bg-white border-t border-black/10 py-10 px-4 sm:px-6 text-xs text-[#6e6e73]">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <span class="font-display font-bold text-[#1D1D1F]">Ganga iPhone</span>
+          <span>&bull;</span>
+          <span>Showroom Oficial San Juan, Argentina</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#catalogo" class="hover:text-[#1D1D1F] transition-colors">Catálogo</a>
+          <a href="#plan-canje" class="hover:text-[#1D1D1F] transition-colors">Plan Canje</a>
+          <a href="https://www.instagram.com/gangaiphone" target="_blank" rel="noopener noreferrer" class="hover:text-[#1D1D1F] transition-colors">Instagram</a>
+          <a href="https://wa.me/542645320505" target="_blank" rel="noopener noreferrer" class="hover:text-[#1D1D1F] transition-colors">WhatsApp</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- =======================================================================
+       QUICK VIEW PRODUCT MODAL (APPLE STORE DETAIL)
+       ======================================================================= -->
+  <div id="quickview-backdrop" onclick="closeQuickView()" class="modal-backdrop fixed inset-0 z-50 bg-black/55 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="quickview-dialog" onclick="event.stopPropagation()" class="w-full max-w-2xl rounded-[2rem] bg-white text-[#1d1d1f] p-6 sm:p-8 shadow-2xl relative">
+      <button type="button" onclick="closeQuickView()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] flex items-center justify-center transition-colors" aria-label="Cerrar vista rápida">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div id="quickview-content" class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+        <!-- Populated by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       8. CARRITO SLIDE-OVER + CHECKOUT INTELIGENTE A WHATSAPP
+       ======================================================================= -->
+  <div id="cart-backdrop" onclick="toggleCart(false)" class="cart-backdrop fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"></div>
+
+  <aside id="cart-drawer" class="cart-drawer fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-[#121216]/95 backdrop-blur-2xl border-l border-white/10 text-appleWhite flex flex-col shadow-2xl" aria-label="Bolsa de compras">
+    <div class="px-6 py-5 border-b border-white/10 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <svg class="w-5 h-5 text-appleWhite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 8h12l1 12H5L6 8Z"/>
+          <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+        </svg>
+        <h2 class="font-display text-lg font-bold tracking-tight">Tu Bolsa</h2>
+      </div>
+      <button type="button" onclick="toggleCart(false)" class="w-8 h-8 rounded-full bg-white/[0.08] hover:bg-white/[0.15] flex items-center justify-center transition-colors" aria-label="Cerrar bolsa">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto px-6 py-5 space-y-6">
+      <div id="cart-items" class="space-y-4"></div>
+
+      <div id="cart-tradein-box" class="hidden rounded-2xl bg-gangaLime/10 border border-gangaLime/25 p-4 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] uppercase tracking-wider font-semibold text-gangaLime">Equipo en Parte de Pago</span>
+          <button type="button" onclick="removeTradeInFromCart()" class="text-[11px] text-zinc-400 hover:text-appleWhite underline">Quitar</button>
+        </div>
+        <p id="cart-tradein-desc" class="text-xs text-appleWhite font-medium"></p>
+        <p id="cart-tradein-credit" class="text-sm font-bold text-gangaLime"></p>
+      </div>
+
+      <div id="cart-checkout-options" class="space-y-5 pt-2 border-t border-white/10">
+        <div>
+          <label class="block text-xs uppercase tracking-[0.12em] text-zinc-400 font-semibold mb-2.5">
+            Medio de Pago Preferido
+          </label>
+          <div id="cart-payment-pills" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-[0.12em] text-zinc-400 font-semibold mb-2.5">
+            Modalidad de Entrega
+          </label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" id="delivery-local" onclick="setDeliveryMethod('Retirar en el Nuevo Local')" class="py-2.5 px-3 rounded-xl border text-xs font-medium transition-all bg-appleWhite text-black border-appleWhite">
+              Retirar en el Nuevo Local
+            </button>
+            <button type="button" id="delivery-envio" onclick="setDeliveryMethod('Consultar Envío a Domicilio')" class="py-2.5 px-3 rounded-xl border text-xs font-medium transition-all bg-white/[0.04] text-zinc-400 border-white/10 hover:text-appleWhite">
+              Consultar Envío a Domicilio
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-6 py-5 border-t border-white/10 bg-[#0b0b0e] space-y-4">
+      <div class="space-y-1.5 text-sm">
+        <div class="flex justify-between text-zinc-400">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0</span>
+        </div>
+        <div id="cart-discount-row" class="hidden flex justify-between text-gangaLime">
+          <span>Crédito Plan Canje</span>
+          <span id="cart-discount-amount">-$0</span>
+        </div>
+        <div class="flex justify-between items-baseline pt-2 border-t border-white/10">
+          <span class="font-semibold text-appleWhite">Total Estimado</span>
+          <span id="cart-total" class="font-display text-2xl font-bold text-appleWhite">$0</span>
+        </div>
+      </div>
+
+      <button type="button" id="checkout-whatsapp-btn" onclick="checkoutToWhatsApp()" class="w-full py-4 px-6 rounded-full bg-gangaLime text-black font-semibold text-sm flex items-center justify-center gap-2 hover:brightness-105 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-40 disabled:pointer-events-none">
+        <span>Finalizar Pedido por WhatsApp</span>
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-notification fixed bottom-6 left-1/2 z-[60] px-5 py-3 rounded-full bg-[#1c1c22] border border-white/15 text-appleWhite text-xs sm:text-sm font-medium shadow-2xl flex items-center gap-2.5">
+    <span class="w-2 h-2 rounded-full bg-gangaLime"></span>
+    <span id="toast-message">Agregado a tu bolsa</span>
+  </div>
+
+</body>
+</html>

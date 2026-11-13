@@ -1,0 +1,305 @@
+/* ==========================================================================
+   GANGA IPHONE — Apple Store Clarity & Aurora Titanium Design System
+   Optimized for 120fps fluid scrolling across Desktop & Mobile
+   ========================================================================== */
+
+:root {
+  --bg-dark: #050507;
+  --bg-dark-card: #121216;
+  --bg-light: #f5f5f7;
+  --bg-white: #ffffff;
+  --text-light: #f5f5f7;
+  --text-dark: #1d1d1f;
+  --text-muted-light: #a1a1aa;
+  --text-muted-dark: #6e6e73;
+  --accent-lime: #a3e635;
+  --accent-lime-dark: #4d7c0f;
+  --accent-emerald: #10b981;
+  --accent-indigo: #4f46e5;
+  --accent-blue: #0071e3;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-dark);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.035em;
+}
+
+.tracking-apple-tight {
+  letter-spacing: -0.03em;
+}
+
+/* Metallic & Vibrant Gradients */
+.text-titanium-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #e5e5ea 50%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-aurora-accent {
+  background: linear-gradient(135deg, #a3e635 0%, #34d399 48%, #818cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Lightweight GPU-friendly Aurora Glow (no massive blur filters that lag mobile GPUs) */
+.aurora-hero-bg {
+  background:
+    radial-gradient(65% 55% at 22% 18%, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0) 70%),
+    radial-gradient(60% 55% at 80% 24%, rgba(79, 70, 229, 0.26) 0%, rgba(79, 70, 229, 0) 72%),
+    radial-gradient(50% 45% at 50% 75%, rgba(163, 230, 53, 0.09) 0%, rgba(163, 230, 53, 0) 70%),
+    #050507;
+}
+
+.aurora-tradein-bg {
+  background:
+    radial-gradient(55% 60% at 15% 20%, rgba(16, 185, 129, 0.16) 0%, transparent 70%),
+    radial-gradient(55% 60% at 85% 80%, rgba(79, 70, 229, 0.2) 0%, transparent 70%),
+    #07070a;
+}
+
+/* Dynamic Island Navbar (Adaptive Dark / Light Glass) */
+.dynamic-island-nav {
+  background: rgba(16, 16, 20, 0.72);
+  color: #f5f5f7;
+  border-color: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.dynamic-island-nav.nav-light {
+  background: rgba(255, 255, 255, 0.84);
+  color: #1d1d1f;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.dynamic-island-nav.nav-light .nav-logo-ganga {
+  color: #1d1d1f;
+}
+
+.dynamic-island-nav.nav-light .nav-logo-bag {
+  fill: #1d1d1f;
+}
+
+.dynamic-island-nav.nav-light .nav-logo-iphone {
+  color: #4d7c0f;
+}
+
+.dynamic-island-nav.nav-light .nav-currency-pill {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.dynamic-island-nav.nav-light .nav-currency-active {
+  background-color: #1d1d1f;
+  color: #ffffff;
+}
+
+.dynamic-island-nav.nav-light .nav-icon-btn {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #1d1d1f;
+}
+
+/* Glass Elements */
+.glass-panel-dark {
+  background: rgba(18, 18, 22, 0.8);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-badge {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* Apple.com Smooth Horizontal Carousel */
+.apple-carousel-track {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.apple-carousel-card {
+  scroll-snap-align: start;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+
+.apple-carousel-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Apple Store Light Product Cards */
+.apple-store-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.apple-store-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.08);
+}
+
+.product-stage img {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.apple-store-card:hover .product-stage img {
+  transform: scale(1.045);
+}
+
+/* Color Swatch Ring */
+.swatch-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.swatch-btn.active {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3.5px #1d1d1f;
+  transform: scale(1.12);
+}
+
+/* Custom Range Slider */
+input[type='range'].apple-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type='range'].apple-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid #a3e635;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+input[type='range'].apple-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+
+input[type='range'].apple-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid #a3e635;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+/* Scrollbar Hide */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Subtle Pulse for Live Status Dot */
+@keyframes pulse-lime {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(163, 230, 53, 0.55);
+  }
+  50% {
+    opacity: 0.85;
+    box-shadow: 0 0 0 6px rgba(163, 230, 53, 0);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-lime 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Slide-Over Cart Drawer & Quick View Modal */
+.cart-backdrop,
+.modal-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cart-backdrop.open,
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-drawer {
+  transform: translate3d(100%, 0, 0);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.cart-drawer.open {
+  transform: translate3d(0, 0, 0);
+}
+
+/* Light Section Bento Cards */
+.bento-light-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.bento-light-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.07);
+}
+
+/* Toast Notification */
+.toast-notification {
+  transform: translate3d(-50%, 24px, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+.toast-notification.show {
+  transform: translate3d(-50%, 0, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
