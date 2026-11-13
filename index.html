@@ -514,121 +514,169 @@
     </section>
 
     <!-- =====================================================================
-         6. MEDIOS DE PAGO & FINANCIACIÓN (MODO CLARO APPLE VIVO)
+         6. MEDIOS DE PAGO & FINANCIACIÓN (BENTO VIBRANTE CON EFECTOS)
          ===================================================================== -->
-    <section id="financiacion" data-nav-theme="light" class="bg-appleWhite text-appleDark py-24 sm:py-28 px-4 sm:px-6">
+    <section id="financiacion" data-nav-theme="light" class="bg-appleWhite text-appleDark py-24 sm:py-28 px-4 sm:px-6 overflow-hidden">
       <div class="max-w-7xl mx-auto">
-        <div class="max-w-3xl mb-14">
-          <span class="text-xs uppercase tracking-[0.18em] text-[#6e6e73] font-semibold">Transparencia Comercial</span>
-          <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-apple-tight text-[#1D1D1F] mt-2">
-            Múltiples formas de llegar a tu iPhone.
-          </h2>
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
+          <div class="max-w-3xl">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-emerald-500/15 via-indigo-500/15 to-lime-500/20 border border-black/5 text-xs uppercase tracking-[0.16em] text-[#1D1D1F] font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-gangaEmerald animate-pulse"></span>
+              Transparencia Comercial
+            </span>
+            <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-apple-tight text-[#1D1D1F] mt-3">
+              Múltiples formas de llegar a tu iPhone.
+            </h2>
+          </div>
+          <p class="text-sm sm:text-base text-[#6e6e73] max-w-md">
+            Elegí cómo querés pagarlo: combinamos recibo de sueldo, plan canje, dólar billete, transferencias y cuotas bancarias.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+        <div id="payment-bento-grid" class="grid grid-cols-1 md:grid-cols-6 gap-6">
           
-          <!-- 1. Featured Wide Card: Recibo de Sueldo -->
-          <article class="md:col-span-4 bento-light-card rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
-            <div class="flex items-start justify-between gap-4 mb-6">
-              <div class="w-12 h-12 rounded-2xl bg-[#ecfccb] flex items-center justify-center text-[#3f6212]">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- 1. Featured Wide Card: Recibo de Sueldo (Vibrant Aurora Dark) -->
+          <article class="payment-card md:col-span-4 rounded-[2rem] bg-gradient-to-br from-[#0B2E2F] via-[#111827] to-[#2E1065] text-white p-8 sm:p-10 flex flex-col justify-between border border-white/15 shadow-2xl" style="--spotlight-color: rgba(163, 230, 53, 0.16); --card-shadow: rgba(16, 185, 129, 0.3);">
+            <!-- Animated Floating Orbs -->
+            <div class="payment-orb pointer-events-none absolute -top-16 -right-12 w-64 h-64 rounded-full bg-emerald-400/20 blur-3xl"></div>
+            <div class="payment-orb pointer-events-none absolute -bottom-16 left-1/3 w-56 h-56 rounded-full bg-indigo-500/25 blur-3xl" style="animation-delay: -3.5s;"></div>
+
+            <div class="relative z-10 flex items-start justify-between gap-4 mb-8">
+              <div class="payment-icon w-14 h-14 rounded-2xl bg-gradient-to-br from-[#A3E635] to-[#10B981] flex items-center justify-center text-black shadow-lg shadow-lime-500/25">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/>
                   <path d="M14 2v6h6"/>
                   <path d="M8 13h8M8 17h5"/>
                 </svg>
               </div>
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ecfccb] text-[#3f6212] text-xs font-semibold">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#65a30d]"></span>
+              <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-gangaLime text-xs font-semibold">
+                <span class="w-2 h-2 rounded-full bg-gangaLime pulse-dot"></span>
                 Aprobación Rápida en San Juan
               </span>
             </div>
 
-            <div>
-              <h3 class="font-display text-2xl sm:text-3xl font-bold text-[#1D1D1F] tracking-tight mb-3">
-                Financiación con Recibo de Sueldo
+            <div class="relative z-10">
+              <h3 class="font-display text-2xl sm:text-4xl font-bold tracking-tight mb-3">
+                Financiación con <span class="text-gangaLime">Recibo de Sueldo</span>
               </h3>
-              <p class="text-[#6e6e73] text-base sm:text-lg leading-relaxed max-w-xl mb-8">
+              <p class="text-zinc-300 text-base sm:text-lg leading-relaxed max-w-xl mb-6">
                 Llevá tu iPhone nuevo o seminuevo hoy presentando tu último recibo de sueldo y DNI. Cuotas claras, aprobación ágil en el local y entrega inmediata.
               </p>
-              <a href="https://wa.me/542645320505?text=Hola%20Ganga%20iPhone!%20Quiero%20consultar%20los%20requisitos%20para%20financiar%20un%20iPhone%20con%20mi%20recibo%20de%20sueldo." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#1D1D1F] text-white text-sm font-semibold hover:bg-black transition-all">
+
+              <!-- 3-Step Micro Flow -->
+              <div class="flex flex-wrap gap-2.5 mb-8 text-xs">
+                <span class="px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90">1. Traés recibo y DNI</span>
+                <span class="px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90">2. Evaluamos en minutos</span>
+                <span class="px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/90">3. Retirás en el acto</span>
+              </div>
+
+              <a href="https://wa.me/542645320505?text=Hola%20Ganga%20iPhone!%20Quiero%20consultar%20los%20requisitos%20para%20financiar%20un%20iPhone%20con%20mi%20recibo%20de%20sueldo." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-gangaLime text-black text-sm font-bold hover:brightness-105 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-lime-500/20">
                 <span>Consultar requisitos con mi recibo</span>
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M5 12h14M13 5l7 7-7 7"/>
                 </svg>
               </a>
             </div>
           </article>
 
-          <!-- 2. Plan Canje Inmediato -->
-          <article class="md:col-span-2 bento-light-card rounded-3xl p-8 flex flex-col justify-between">
-            <div class="w-12 h-12 rounded-2xl bg-[#eef2ff] flex items-center justify-center text-[#4f46e5] mb-6">
-              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-                <path d="M3 3v5h5"/>
-                <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
-                <path d="M16 16h5v5"/>
-              </svg>
+          <!-- 2. Plan Canje Inmediato (Vibrant Indigo / Violet) -->
+          <article class="payment-card md:col-span-2 rounded-[2rem] bg-gradient-to-br from-[#EEF2FF] via-[#F5F3FF] to-white p-8 flex flex-col justify-between border border-indigo-500/15" style="--spotlight-color: rgba(79, 70, 229, 0.14); --card-shadow: rgba(79, 70, 229, 0.2);">
+            <div class="payment-orb pointer-events-none -top-10 -right-10 w-36 h-36 rounded-full bg-indigo-400/20 blur-2xl absolute"></div>
+
+            <div class="relative z-10 flex items-center justify-between gap-3 mb-8">
+              <div class="payment-icon w-13 h-13 p-3 rounded-2xl bg-gradient-to-br from-[#6366F1] to-[#4F46E5] flex items-center justify-center text-white shadow-lg shadow-indigo-500/25">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                  <path d="M3 3v5h5"/>
+                  <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+                  <path d="M16 16h5v5"/>
+                </svg>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-700 text-[11px] font-semibold">Cotización Web</span>
             </div>
-            <div>
-              <h3 class="font-display text-xl font-bold text-[#1D1D1F] tracking-tight mb-2">
+
+            <div class="relative z-10">
+              <h3 class="font-display text-2xl font-bold text-[#1D1D1F] tracking-tight mb-2">
                 Plan Canje Inmediato
               </h3>
-              <p class="text-[#6e6e73] text-sm leading-relaxed">
-                Entregás tu equipo actual como parte de pago y solo abonás la diferencia en el acto.
+              <p class="text-[#52525b] text-sm leading-relaxed mb-6">
+                Entregás tu iPhone actual como parte de pago y solo abonás la diferencia en el acto.
               </p>
+              <a href="#plan-canje" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+                <span>Calcular mi equipo ahora</span>
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
             </div>
           </article>
 
-          <!-- 3. Efectivo (USD / Pesos) -->
-          <article class="md:col-span-2 bento-light-card rounded-3xl p-8 flex flex-col justify-between">
-            <div class="w-12 h-12 rounded-2xl bg-[#ecfdf5] flex items-center justify-center text-[#059669] mb-6">
-              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="6" width="20" height="12" rx="2"/>
-                <circle cx="12" cy="12" r="2.5"/>
-                <path d="M6 12h.01M18 12h.01"/>
-              </svg>
+          <!-- 3. Efectivo USD / Pesos (Vibrant Emerald / Mint) -->
+          <article class="payment-card md:col-span-2 rounded-[2rem] bg-gradient-to-br from-[#ECFDF5] via-[#F0FDF4] to-white p-8 flex flex-col justify-between border border-emerald-500/15" style="--spotlight-color: rgba(16, 185, 129, 0.16); --card-shadow: rgba(16, 185, 129, 0.2);">
+            <div class="payment-orb pointer-events-none -bottom-10 -right-10 w-32 h-32 rounded-full bg-emerald-400/20 blur-2xl absolute"></div>
+
+            <div class="relative z-10 flex items-center justify-between gap-3 mb-8">
+              <div class="payment-icon p-3 rounded-2xl bg-gradient-to-br from-[#10B981] to-[#059669] flex items-center justify-center text-white shadow-lg shadow-emerald-500/25">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="6" width="20" height="12" rx="2"/>
+                  <circle cx="12" cy="12" r="2.5"/>
+                  <path d="M6 12h.01M18 12h.01"/>
+                </svg>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 text-[11px] font-semibold">Mejor Precio</span>
             </div>
-            <div>
+
+            <div class="relative z-10">
               <h3 class="font-display text-xl font-bold text-[#1D1D1F] tracking-tight mb-2">
                 Efectivo (USD / Pesos)
               </h3>
-              <p class="text-[#6e6e73] text-sm leading-relaxed">
-                Cotización preferencial en billete dólar cara grande o pesos argentinos en el showroom.
+              <p class="text-[#52525b] text-sm leading-relaxed">
+                Cotización preferencial en billete dólar cara grande o pesos argentinos directamente en el showroom.
               </p>
             </div>
           </article>
 
-          <!-- 4. Transferencia (USD / Pesos) -->
-          <article class="md:col-span-2 bento-light-card rounded-3xl p-8 flex flex-col justify-between">
-            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] flex items-center justify-center text-[#2563eb] mb-6">
-              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 7L7 17M17 7H8M17 7v9"/>
-              </svg>
+          <!-- 4. Transferencia USD / Pesos (Vibrant Apple Blue / Cyan) -->
+          <article class="payment-card md:col-span-2 rounded-[2rem] bg-gradient-to-br from-[#EFF6FF] via-[#ECFEFF] to-white p-8 flex flex-col justify-between border border-sky-500/15" style="--spotlight-color: rgba(0, 113, 227, 0.15); --card-shadow: rgba(0, 113, 227, 0.2);">
+            <div class="payment-orb pointer-events-none -top-10 -right-10 w-32 h-32 rounded-full bg-sky-400/20 blur-2xl absolute"></div>
+
+            <div class="relative z-10 flex items-center justify-between gap-3 mb-8">
+              <div class="payment-icon p-3 rounded-2xl bg-gradient-to-br from-[#0EA5E9] to-[#0071E3] flex items-center justify-center text-white shadow-lg shadow-sky-500/25">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 7L7 17M17 7H8M17 7v9"/>
+                </svg>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-sky-500/10 text-sky-700 text-[11px] font-semibold">Al Instante</span>
             </div>
-            <div>
+
+            <div class="relative z-10">
               <h3 class="font-display text-xl font-bold text-[#1D1D1F] tracking-tight mb-2">
                 Transferencia (USD / Pesos)
               </h3>
-              <p class="text-[#6e6e73] text-sm leading-relaxed">
-                Aceptamos transferencias bancarias en pesos o dólares y billeteras digitales al instante.
+              <p class="text-[#52525b] text-sm leading-relaxed">
+                Aceptamos transferencias bancarias en pesos o dólares y billeteras digitales con acreditación inmediata.
               </p>
             </div>
           </article>
 
-          <!-- 5. Tarjetas Bancarias -->
-          <article class="md:col-span-2 bento-light-card rounded-3xl p-8 flex flex-col justify-between">
-            <div class="w-12 h-12 rounded-2xl bg-[#faf5ff] flex items-center justify-center text-[#7c3aed] mb-6">
-              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="5" width="20" height="14" rx="2"/>
-                <path d="M2 10h20"/>
-              </svg>
+          <!-- 5. Tarjetas Bancarias (Vibrant Purple / Fuchsia) -->
+          <article class="payment-card md:col-span-2 rounded-[2rem] bg-gradient-to-br from-[#FAF5FF] via-[#FDF2F8] to-white p-8 flex flex-col justify-between border border-purple-500/15" style="--spotlight-color: rgba(168, 85, 247, 0.15); --card-shadow: rgba(147, 51, 234, 0.2);">
+            <div class="payment-orb pointer-events-none -bottom-10 -left-10 w-32 h-32 rounded-full bg-fuchsia-400/20 blur-2xl absolute"></div>
+
+            <div class="relative z-10 flex items-center justify-between gap-3 mb-8">
+              <div class="payment-icon p-3 rounded-2xl bg-gradient-to-br from-[#A855F7] to-[#EC4899] flex items-center justify-center text-white shadow-lg shadow-purple-500/25">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="2"/>
+                  <path d="M2 10h20"/>
+                </svg>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-700 text-[11px] font-semibold">Cuotas Fijas</span>
             </div>
-            <div>
+
+            <div class="relative z-10">
               <h3 class="font-display text-xl font-bold text-[#1D1D1F] tracking-tight mb-2">
                 Tarjetas Bancarias
               </h3>
-              <p class="text-[#6e6e73] text-sm leading-relaxed">
-                Financiación en cuotas fijas con tarjetas de crédito Visa, Mastercard y bancos seleccionados.
+              <p class="text-[#52525b] text-sm leading-relaxed">
+                Financiación en cuotas con tarjetas de crédito Visa, Mastercard y promociones bancarias vigentes.
               </p>
             </div>
           </article>
@@ -777,20 +825,135 @@
       </div>
     </section>
 
-    <!-- Minimalist Footer -->
-    <footer data-nav-theme="light" class="bg-white border-t border-black/10 py-10 px-4 sm:px-6 text-xs text-[#6e6e73]">
-      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-2">
-          <span class="font-display font-bold text-[#1D1D1F]">Ganga iPhone</span>
-          <span>&bull;</span>
-          <span>Showroom Oficial San Juan, Argentina</span>
+    <!-- =====================================================================
+         8. FLAGSHIP AURORA FOOTER CON LOGO OFICIAL
+         ===================================================================== -->
+    <footer class="footer-aurora-bg text-appleWhite pt-20 pb-12 px-4 sm:px-6 border-t border-white/10 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto relative z-10">
+
+        <!-- Pre-Footer Highlight Banner -->
+        <div class="rounded-[2rem] bg-white/[0.04] border border-white/10 backdrop-blur-xl p-6 sm:p-10 mb-16 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div class="space-y-2 max-w-xl">
+            <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-gangaLime font-semibold">
+              <span class="w-2 h-2 rounded-full bg-gangaLime pulse-dot"></span>
+              Showroom Oficial &bull; San Juan
+            </span>
+            <h2 class="font-display text-2xl sm:text-4xl font-bold tracking-tight text-titanium-gradient">
+              ¿Listo para estrenar tu próximo Apple?
+            </h2>
+            <p class="text-sm sm:text-base text-zinc-400">
+              Escribinos ahora para reservar tu equipo, cotizar tu usado o consultar financiación con recibo de sueldo.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+            <a href="https://wa.me/542645320505?text=Hola%20Ganga%20iPhone!%20Vengo%20desde%20la%20web%20y%20quiero%20asesoramiento." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gangaLime text-black text-sm font-bold hover:brightness-105 hover:scale-[1.02] transition-all">
+              <span>Hablar por WhatsApp</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#catalogo" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/[0.08] border border-white/15 text-appleWhite text-sm font-medium hover:bg-white/[0.14] transition-all">
+              Explorar Catálogo
+            </a>
+          </div>
         </div>
-        <div class="flex items-center gap-6">
-          <a href="#catalogo" class="hover:text-[#1D1D1F] transition-colors">Catálogo</a>
-          <a href="#plan-canje" class="hover:text-[#1D1D1F] transition-colors">Plan Canje</a>
-          <a href="https://www.instagram.com/gangaiphone" target="_blank" rel="noopener noreferrer" class="hover:text-[#1D1D1F] transition-colors">Instagram</a>
-          <a href="https://wa.me/542645320505" target="_blank" rel="noopener noreferrer" class="hover:text-[#1D1D1F] transition-colors">WhatsApp</a>
+
+        <!-- Main Footer Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-14 border-b border-white/10">
+          
+          <!-- Brand Column with Official Logo -->
+          <div class="lg:col-span-4 space-y-5">
+            <a href="#hero" class="inline-flex items-center gap-3.5 group">
+              <div class="relative p-0.5 rounded-2xl bg-gradient-to-br from-emerald-400/60 via-lime-400/50 to-indigo-500/60 shadow-lg shadow-emerald-500/10">
+                <img src="LOGO.jpg" alt="Ganga iPhone Logo Oficial" loading="lazy" decoding="async" class="w-14 h-14 rounded-[14px] object-cover transition-transform duration-300 group-hover:scale-105" />
+              </div>
+              <div class="flex flex-col">
+                <div class="flex items-baseline gap-1.5">
+                  <span class="font-display font-bold text-2xl tracking-tight text-white">Ganga</span>
+                  <span class="font-display font-bold text-xl tracking-tight text-gangaLime">iPhone</span>
+                </div>
+                <span class="text-[11px] uppercase tracking-[0.14em] text-zinc-400">Apple Experience Store</span>
+              </div>
+            </a>
+
+            <p class="text-sm text-zinc-400 leading-relaxed max-w-sm">
+              Tienda líder en equipos Apple nuevos sellados, seminuevos certificados y ecosistema Mac. Atención personalizada y transferencia de datos sin cargo en San Juan.
+            </p>
+
+            <!-- Social Icon Buttons -->
+            <div class="flex items-center gap-3 pt-1">
+              <a href="https://www.instagram.com/gangaiphone" target="_blank" rel="noopener noreferrer" aria-label="Instagram Ganga iPhone" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/10 text-xs font-medium text-appleWhite hover:bg-gradient-to-r hover:from-pink-500/20 hover:to-indigo-500/20 hover:border-white/25 transition-all">
+                <svg class="w-4 h-4 text-pink-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <path d="M17.5 6.5h.01"/>
+                </svg>
+                <span>@gangaiphone</span>
+              </a>
+
+              <a href="https://wa.me/542645320505" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Ganga iPhone" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/10 text-xs font-medium text-appleWhite hover:bg-emerald-500/20 hover:border-emerald-400/30 transition-all">
+                <svg class="w-4 h-4 text-gangaLime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/>
+                </svg>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Column 1: Catálogo -->
+          <div class="lg:col-span-2 space-y-4">
+            <h3 class="text-xs uppercase tracking-[0.16em] text-zinc-400 font-semibold">Catálogo</h3>
+            <ul class="space-y-2.5 text-sm text-zinc-300">
+              <li><a href="#catalogo" onclick="filterCatalog('sellados')" class="hover:text-gangaLime transition-colors">iPhone Nuevos</a></li>
+              <li><a href="#catalogo" onclick="filterCatalog('seminuevos')" class="hover:text-gangaLime transition-colors">iPhone Seminuevos</a></li>
+              <li><a href="#catalogo" onclick="filterCatalog('mac-ipad')" class="hover:text-gangaLime transition-colors">MacBook &amp; Mac mini</a></li>
+              <li><a href="#catalogo" onclick="filterCatalog('airpods-watch')" class="hover:text-gangaLime transition-colors">AirPods, Beats &amp; Watch</a></li>
+              <li><a href="#catalogo" onclick="filterCatalog('accesorios')" class="hover:text-gangaLime transition-colors">Fundas &amp; Cargadores</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Servicios -->
+          <div class="lg:col-span-3 space-y-4">
+            <h3 class="text-xs uppercase tracking-[0.16em] text-zinc-400 font-semibold">Financiación &amp; Servicios</h3>
+            <ul class="space-y-2.5 text-sm text-zinc-300">
+              <li><a href="#plan-canje" class="hover:text-gangaLime transition-colors">Cotizador de Plan Canje</a></li>
+              <li><a href="#financiacion" class="hover:text-gangaLime transition-colors">Crédito con Recibo de Sueldo</a></li>
+              <li><a href="#financiacion" class="hover:text-gangaLime transition-colors">Efectivo y Transferencias USD/ARS</a></li>
+              <li><a href="#nuevo-local" class="hover:text-gangaLime transition-colors">Transferencia de datos sin cargo</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Nuevo Showroom -->
+          <div class="lg:col-span-3 space-y-4">
+            <h3 class="text-xs uppercase tracking-[0.16em] text-zinc-400 font-semibold">Nuevo Local</h3>
+            <div class="space-y-3 text-sm text-zinc-300">
+              <p class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-gangaLime shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s-7-5.5-7-12a7 7 0 1 1 14 0c0 6.5-7 12-7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                <span>Zona Centro, San Juan Capital<br/><span class="text-xs text-zinc-500">Showroom privado con seguridad</span></span>
+              </p>
+              <p class="flex items-start gap-2.5">
+                <svg class="w-4 h-4 text-gangaLime shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                <span>Lun a Vie: 9:30–13:30 / 17:00–21:00<br/><span class="text-xs text-zinc-500">Sábados: 10:00 a 14:00 hs</span></span>
+              </p>
+              <p class="flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-gangaLime shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span>+54 9 264 532-0505</span>
+              </p>
+            </div>
+          </div>
+
         </div>
+
+        <!-- Bottom Bar -->
+        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+          <p>&copy; 2026 <strong class="text-zinc-300 font-semibold">Ganga iPhone</strong> &bull; Todos los derechos reservados &bull; San Juan, Argentina.</p>
+
+          <div class="flex flex-wrap items-center justify-center gap-2">
+            <span class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400">USD / ARS</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400">Recibo de Sueldo</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400">Plan Canje</span>
+            <span class="px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-zinc-400">Tarjetas</span>
+          </div>
+        </div>
+
       </div>
     </footer>
   </main>

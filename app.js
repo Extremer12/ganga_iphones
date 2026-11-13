@@ -1247,6 +1247,35 @@ function initAnimations() {
     ease: 'power3.out',
     clearProps: 'transform,opacity'
   });
+
+  // Payment Bento Cards Staggered Entrance
+  if (document.querySelector('#payment-bento-grid .payment-card')) {
+    gsap.from('#payment-bento-grid .payment-card', {
+      y: 34,
+      opacity: 0,
+      scale: 0.97,
+      duration: 0.7,
+      stagger: 0.09,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: {
+        trigger: '#payment-bento-grid',
+        start: 'top 82%',
+        once: true
+      }
+    });
+  }
+}
+
+function initPaymentCardEffects() {
+  if (!window.matchMedia || !window.matchMedia('(hover: hover)').matches) return;
+  document.querySelectorAll('.payment-card').forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    });
+  });
 }
 
 // ==========================================================================
@@ -1265,6 +1294,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTradeInSelectors();
   renderCart();
   initAdaptiveNavbar();
+  initPaymentCardEffects();
   initAnimations();
 
   document.addEventListener('keydown', (e) => {
