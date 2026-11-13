@@ -209,7 +209,7 @@
     </section>
 
     <!-- =====================================================================
-         3. APPLE.COM LINEUP EDITORIAL GALLERY (COLORFUL & FLUID CAROUSEL)
+         3. APPLE.COM LINEUP EDITORIAL GALLERY (PASARELA CONTINUA)
          ===================================================================== -->
     <section id="destacados" class="bg-white text-appleDark py-16 sm:py-24 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -220,88 +220,108 @@
           </h2>
         </div>
 
-        <!-- Smooth Carousel Controls -->
-        <div class="flex items-center gap-2 self-start sm:self-auto">
-          <button type="button" onclick="scrollLineup(-1)" class="w-10 h-10 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] flex items-center justify-center transition-colors" aria-label="Anterior">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button type="button" onclick="scrollLineup(1)" class="w-10 h-10 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f] flex items-center justify-center transition-colors" aria-label="Siguiente">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-        </div>
+        <p class="text-xs sm:text-sm text-[#6e6e73] font-medium">
+          Pasarela en vivo &bull; Tocá cualquier modelo para explorarlo
+        </p>
       </div>
 
-      <!-- Horizontal Snap Track (100% Native GPU Scroll, Zero Jank) -->
-      <div id="lineup-carousel" class="apple-carousel-track flex gap-5 overflow-x-auto no-scrollbar px-4 sm:px-6 lg:px-[max(1.5rem,calc((100vw-80rem)/2))] pb-4">
-        
-        <!-- Editorial Card 1: iPhone 17 -->
-        <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 17')" class="apple-carousel-card shrink-0 w-[280px] sm:w-[330px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
-          <div class="aspect-[4/5] relative overflow-hidden">
-            <img src="iphone_17__cuyljf3ic8k2_large.jpg" alt="iPhone 17" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
-              <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Nuevo Sellado</span>
-              <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17</h3>
-              <p class="text-xs text-white/90 mt-1">Color, velocidad y cámara Pro.</p>
-            </div>
-          </div>
-        </a>
+      <!-- Seamless Infinite GPU Runway -->
+      <div id="lineup-carousel" class="runway-viewport py-4">
+        <div class="runway-track">
+          <!-- Group A -->
+          <div class="runway-group">
+            <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 17')" class="apple-carousel-card shrink-0 w-[270px] sm:w-[320px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+              <div class="aspect-[4/5] relative overflow-hidden">
+                <img src="iphone_17__cuyljf3ic8k2_large.jpg" alt="iPhone 17" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+                  <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Nuevo Sellado</span>
+                  <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17</h3>
+                  <p class="text-xs text-white/90 mt-1">Color, velocidad y cámara Pro.</p>
+                </div>
+              </div>
+            </a>
 
-        <!-- Editorial Card 2: iPhone 17 Air -->
-        <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 17 Air')" class="apple-carousel-card shrink-0 w-[280px] sm:w-[330px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
-          <div class="aspect-[4/5] relative overflow-hidden">
-            <img src="iphone_air__behibcx1cfde_large.jpg" alt="iPhone Air" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
-              <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Ultradelgado</span>
-              <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17 Air</h3>
-              <p class="text-xs text-white/90 mt-1">El iPhone más fino de la historia.</p>
-            </div>
-          </div>
-        </a>
+            <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 17 Air')" class="apple-carousel-card shrink-0 w-[270px] sm:w-[320px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+              <div class="aspect-[4/5] relative overflow-hidden">
+                <img src="iphone_air__behibcx1cfde_large.jpg" alt="iPhone 17 Air" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+                  <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Ultradelgado</span>
+                  <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17 Air</h3>
+                  <p class="text-xs text-white/90 mt-1">El iPhone más fino de la historia.</p>
+                </div>
+              </div>
+            </a>
 
-        <!-- Editorial Card 3: iPhone 16 Plus -->
-        <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 16')" class="apple-carousel-card shrink-0 w-[280px] sm:w-[330px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
-          <div class="aspect-[4/5] relative overflow-hidden">
-            <img src="iphone_16__feoq604c6fe6_large.jpg" alt="iPhone 16" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
-              <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Más Elegido</span>
-              <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 16 &amp; Plus</h3>
-              <p class="text-xs text-white/90 mt-1">Control de cámara y chip A18.</p>
-            </div>
-          </div>
-        </a>
+            <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 16')" class="apple-carousel-card shrink-0 w-[270px] sm:w-[320px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+              <div class="aspect-[4/5] relative overflow-hidden">
+                <img src="iphone_16__feoq604c6fe6_large.jpg" alt="iPhone 16 y Plus" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+                  <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Más Elegido</span>
+                  <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 16 &amp; Plus</h3>
+                  <p class="text-xs text-white/90 mt-1">Control de cámara y chip A18.</p>
+                </div>
+              </div>
+            </a>
 
-        <!-- Editorial Card 4: iPhone 17e -->
-        <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 17e')" class="apple-carousel-card shrink-0 w-[280px] sm:w-[330px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
-          <div class="aspect-[4/5] relative overflow-hidden">
-            <img src="iphone_17e__fes2iqci8aaa_large.jpg" alt="iPhone 17e" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
-              <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Smart Choice</span>
-              <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17e</h3>
-              <p class="text-xs text-white/90 mt-1">Potencia Apple al mejor precio.</p>
-            </div>
+            <a href="#catalogo" onclick="quickFilterAndFocus('sellados', 'iPhone 17e')" class="apple-carousel-card shrink-0 w-[270px] sm:w-[320px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+              <div class="aspect-[4/5] relative overflow-hidden">
+                <img src="iphone_17e__fes2iqci8aaa_large.jpg" alt="iPhone 17e" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+                  <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Smart Choice</span>
+                  <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17e</h3>
+                  <p class="text-xs text-white/90 mt-1">Potencia Apple al mejor precio.</p>
+                </div>
+              </div>
+            </a>
           </div>
-        </a>
 
-        <!-- Editorial Card 5: Seminuevos Certificados -->
-        <a href="#catalogo" onclick="filterCatalog('seminuevos')" class="apple-carousel-card shrink-0 w-[280px] sm:w-[330px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#121216] text-white p-7 flex flex-col justify-between">
-          <div>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gangaLime/15 text-gangaLime text-[11px] font-semibold">
-              <span class="w-1.5 h-1.5 rounded-full bg-gangaLime"></span>
-              Certificados +30 Puntos
-            </span>
-            <h3 class="font-display text-2xl font-bold mt-4">Seminuevos Seleccionados</h3>
-            <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-              Equipos testeados, 100% originales con garantía escrita y salud de batería verificada.
-            </p>
-          </div>
-          <div class="pt-6">
-            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-gangaLime group-hover:translate-x-1 transition-transform">
-              Explorar Seminuevos
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-            </span>
-          </div>
-        </a>
+          <!-- Group B (Seamless Infinite Loop Clone) -->
+          <div class="runway-group" aria-hidden="true">
+            <a href="#catalogo" tabindex="-1" onclick="quickFilterAndFocus('sellados', 'iPhone 17')" class="apple-carousel-card shrink-0 w-[270px] sm:w-[320px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+              <div class="aspect-[4/5] relative overflow-hidden">
+                <img src="iphone_17__cuyljf3ic8k2_large.jpg" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+                  <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Nuevo Sellado</span>
+                  <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17</h3>
+                  <p class="text-xs text-white/90 mt-1">Color, velocidad y cámara Pro.</p>
+                </div>
+              </div>
+            </a>
 
+            <a href="#catalogo" tabindex="-1" onclick="quickFilterAndFocus('sellados', 'iPhone 17 Air')" class="apple-carousel-card shrink-0 w-[270px] sm:w-[320px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+              <div class="aspect-[4/5] relative overflow-hidden">
+                <img src="iphone_air__behibcx1cfde_large.jpg" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+                  <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Ultradelgado</span>
+                  <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17 Air</h3>
+                  <p class="text-xs text-white/90 mt-1">El iPhone más fino de la historia.</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="#catalogo" tabindex="-1" onclick="quickFilterAndFocus('sellados', 'iPhone 16')" class="apple-carousel-card shrink-0 w-[270px] sm:w-[320px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+              <div class="aspect-[4/5] relative overflow-hidden">
+                <img src="iphone_16__feoq604c6fe6_large.jpg" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+                  <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Más Elegido</span>
+                  <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 16 &amp; Plus</h3>
+                  <p class="text-xs text-white/90 mt-1">Control de cámara y chip A18.</p>
+                </div>
+              </div>
+            </a>
+
+            <a href="#catalogo" tabindex="-1" onclick="quickFilterAndFocus('sellados', 'iPhone 17e')" class="apple-carousel-card shrink-0 w-[270px] sm:w-[320px] rounded-3xl overflow-hidden relative group shadow-md border border-black/5 bg-[#f5f5f7]">
+              <div class="aspect-[4/5] relative overflow-hidden">
+                <img src="iphone_17e__fes2iqci8aaa_large.jpg" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-x-0 top-0 p-6 bg-gradient-to-b from-black/55 via-black/20 to-transparent text-white">
+                  <span class="text-[11px] uppercase tracking-wider font-semibold text-white/90">Smart Choice</span>
+                  <h3 class="font-display text-2xl font-bold mt-0.5">iPhone 17e</h3>
+                  <p class="text-xs text-white/90 mt-1">Potencia Apple al mejor precio.</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 

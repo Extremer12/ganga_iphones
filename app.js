@@ -464,15 +464,8 @@ function setCurrency(curr) {
 }
 
 // ==========================================================================
-// LINEUP CAROUSEL & QUICK NAVIGATION
+// LINEUP RUNWAY & QUICK NAVIGATION
 // ==========================================================================
-function scrollLineup(direction) {
-  const track = document.getElementById('lineup-carousel');
-  if (!track) return;
-  const step = Math.min(360, track.clientWidth * 0.8);
-  track.scrollBy({ left: direction * step, behavior: 'smooth' });
-}
-
 function quickFilterAndFocus(category, searchTerm) {
   const searchInput = document.getElementById('catalog-search');
   if (searchInput) searchInput.value = searchTerm;
@@ -1362,33 +1355,18 @@ function initAnimations() {
     });
   });
 
-  // 4. Apple.com Lineup Gallery Cards + Optical Image Settle
-  const lineupCards = gsap.utils.toArray('#lineup-carousel .apple-carousel-card');
-  if (lineupCards.length) {
-    gsap.from(lineupCards, {
-      y: 42,
+  // 4. Apple.com Lineup Infinite Runway Entrance
+  const lineupViewport = document.getElementById('lineup-carousel');
+  if (lineupViewport) {
+    gsap.from(lineupViewport, {
+      y: 34,
       opacity: 0,
-      scale: 0.95,
-      duration: 0.8,
-      stagger: 0.08,
+      duration: 0.9,
       ease: 'power3.out',
       clearProps: 'transform,opacity',
       scrollTrigger: {
-        trigger: '#lineup-carousel',
-        start: 'top 84%',
-        once: true
-      }
-    });
-
-    gsap.from('#lineup-carousel .apple-carousel-card img', {
-      scale: 1.1,
-      duration: 1.1,
-      stagger: 0.08,
-      ease: 'power2.out',
-      clearProps: 'transform',
-      scrollTrigger: {
-        trigger: '#lineup-carousel',
-        start: 'top 84%',
+        trigger: lineupViewport,
+        start: 'top 86%',
         once: true
       }
     });

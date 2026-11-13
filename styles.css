@@ -133,19 +133,47 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-/* Apple.com Smooth Horizontal Carousel */
-.apple-carousel-track {
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+/* Apple.com Smooth Infinite Runway (Pasarela) */
+.runway-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+@keyframes runway-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.runway-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: runway-marquee 32s linear infinite;
+}
+
+.runway-viewport:hover .runway-track,
+.runway-viewport:focus-within .runway-track {
+  animation-play-state: paused;
+}
+
+.runway-group {
+  display: flex;
+  gap: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .apple-carousel-card {
-  scroll-snap-align: start;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
 }
 
 .apple-carousel-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
 }
 
 /* Apple Store Light Product Cards */
