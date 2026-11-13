@@ -50,6 +50,9 @@
 
 <body class="bg-oled text-appleWhite selection:bg-gangaLime selection:text-black">
 
+  <!-- Precision Scroll Progress Bar -->
+  <div id="scroll-progress" aria-hidden="true" class="fixed top-0 left-0 right-0 h-[2.5px] z-[60] origin-left scale-x-0 pointer-events-none bg-gradient-to-r from-[#10B981] via-[#A3E635] to-[#4F46E5]"></div>
+
   <!-- =======================================================================
        1. NAVBAR "DYNAMIC ISLAND" ADAPTATIVA + MONEDA + CARRITO
        ======================================================================= -->
@@ -128,7 +131,7 @@
     <section id="hero" class="aurora-hero-bg relative pt-28 pb-16 sm:pt-32 sm:pb-24 px-4 sm:px-6 overflow-hidden">
       <div class="max-w-7xl mx-auto">
         <!-- Top Copy Centered -->
-        <div class="max-w-4xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-14">
+        <div class="hero-copy-stage max-w-4xl mx-auto text-center flex flex-col items-center mb-12 sm:mb-14 will-change-transform">
           <h1 class="hero-reveal font-display font-bold text-4xl sm:text-6xl lg:text-[5rem] leading-[1.02] tracking-apple-tight text-titanium-gradient mb-5">
             Tu próximo iPhone.<br />
             <span class="text-aurora-accent">Más cerca que nunca.</span>
@@ -157,8 +160,7 @@
           <!-- Main Flagship Feature Card -->
           <div class="lg:col-span-7 rounded-[2rem] bg-white border border-white/20 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.65)] relative group">
             <div class="sm:w-1/2 text-left space-y-4 z-10">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f5f5f7] text-[#1d1d1f] text-[11px] font-semibold">
-                <span class="w-1.5 h-1.5 rounded-full bg-gangaEmerald"></span>
+              <span class="inline-block text-[11px] uppercase tracking-[0.14em] text-gangaEmerald font-bold">
                 Nuevo Ingreso Pro
               </span>
               <h2 class="font-display text-3xl sm:text-4xl font-bold text-[#1d1d1f] tracking-tight leading-tight">
@@ -175,7 +177,7 @@
               </div>
             </div>
             <div class="sm:w-1/2 flex items-center justify-center">
-              <img src="iphone-card-40-18pro-202609.webp" alt="iPhone Pro Flagship" fetchpriority="high" decoding="async" class="w-56 sm:w-64 h-auto object-contain transition-transform duration-500 group-hover:scale-105" />
+              <img src="iphone-card-40-18pro-202609.webp" alt="iPhone Pro Flagship" fetchpriority="high" decoding="async" class="hero-pro-img w-56 sm:w-64 h-auto object-contain transition-transform duration-500 group-hover:scale-105 will-change-transform" />
             </div>
           </div>
 
@@ -211,7 +213,7 @@
          ===================================================================== -->
     <section id="destacados" class="bg-white text-appleDark py-16 sm:py-24 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-        <div>
+        <div class="scroll-reveal-heading">
           <span class="text-xs uppercase tracking-[0.16em] text-[#6e6e73] font-semibold">Conocé la línea</span>
           <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-apple-tight text-[#1d1d1f] mt-1.5">
             Diseño vivo. Elegí el tuyo.
@@ -311,7 +313,7 @@
         
         <!-- Catalog Header + Live Search -->
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
-          <div>
+          <div class="scroll-reveal-heading">
             <span class="text-xs uppercase tracking-[0.16em] text-[#6e6e73] font-semibold">Apple Store Experience</span>
             <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-apple-tight text-[#1d1d1f] mt-1.5">
               Catálogo Oficial.
@@ -377,7 +379,7 @@
          ===================================================================== -->
     <section id="plan-canje" class="aurora-tradein-bg text-appleWhite py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
       <div class="max-w-6xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="scroll-illuminate text-center max-w-2xl mx-auto mb-12">
           <span class="text-xs uppercase tracking-[0.18em] text-gangaLime font-semibold">Plan Canje Inteligente</span>
           <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-apple-tight text-titanium-gradient mt-2 mb-4">
             Tu celular actual vale oro.
@@ -388,7 +390,7 @@
         </div>
 
         <!-- Frosted Dark Glass Module -->
-        <div class="glass-panel-dark rounded-[2rem] p-6 sm:p-10 lg:p-12 shadow-2xl">
+        <div class="tradein-module glass-panel-dark rounded-[2rem] p-6 sm:p-10 lg:p-12 shadow-2xl">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             
             <!-- Left: 3-Step Interactive Controls -->
@@ -512,7 +514,7 @@
     <section id="financiacion" data-nav-theme="light" class="bg-appleWhite text-appleDark py-24 sm:py-28 px-4 sm:px-6 overflow-hidden">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
-          <div class="max-w-3xl">
+          <div class="scroll-reveal-heading max-w-3xl">
             <span class="text-xs uppercase tracking-[0.18em] text-[#6e6e73] font-semibold">Transparencia Comercial</span>
             <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-apple-tight text-[#1D1D1F] mt-2">
               Múltiples formas de llegar a tu iPhone.
@@ -683,7 +685,7 @@
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             <!-- Editorial Info -->
-            <div class="lg:col-span-6 space-y-6">
+            <div class="showroom-info lg:col-span-6 space-y-6">
               <span class="block text-xs uppercase tracking-[0.18em] text-[#6e6e73] font-semibold">
                 Inauguración Nuevo Showroom
               </span>
@@ -763,7 +765,7 @@
             </div>
 
             <!-- Stylized Dark Minimalist Location Map Card -->
-            <div class="lg:col-span-6">
+            <div class="showroom-map lg:col-span-6">
               <div class="relative rounded-3xl bg-[#121216] text-appleWhite p-6 sm:p-8 min-h-[380px] flex flex-col justify-between overflow-hidden shadow-xl">
                 <svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" viewBox="0 0 600 420" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 90H600M0 190H600M0 290H600M0 370H600" stroke="#86868B" stroke-width="0.8"/>
@@ -816,7 +818,7 @@
          8. FLAGSHIP AURORA FOOTER CON LOGO OFICIAL SIN FONDO
          ===================================================================== -->
     <footer class="footer-aurora-bg text-appleWhite pt-20 pb-12 px-4 sm:px-6 border-t border-white/10 relative overflow-hidden">
-      <div class="max-w-7xl mx-auto relative z-10">
+      <div class="footer-reveal max-w-7xl mx-auto relative z-10">
 
         <!-- Main Footer Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-14 border-b border-white/10">

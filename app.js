@@ -543,12 +543,12 @@ function filterCatalog(category) {
     }
   });
 
-  renderCatalog();
+  renderCatalog(true);
 }
 
 function handleSearch(value) {
   state.searchQuery = value.trim().toLowerCase();
-  renderCatalog();
+  renderCatalog(false);
 }
 
 function resetCatalogFilters() {
@@ -560,15 +560,15 @@ function resetCatalogFilters() {
 
 function selectColor(productId, colorIdx) {
   state.selectedVariants[productId].colorIdx = colorIdx;
-  renderCatalog();
+  renderCatalog(false);
 }
 
 function selectCapacity(productId, capIdx) {
   state.selectedVariants[productId].capIdx = capIdx;
-  renderCatalog();
+  renderCatalog(false);
 }
 
-function renderCatalog() {
+function renderCatalog(animateCards = false) {
   const grid = document.getElementById('product-grid');
   const countEl = document.getElementById('catalog-count');
   if (!grid) return;
@@ -725,6 +725,10 @@ function renderCatalog() {
       `;
     })
     .join('');
+
+  if (animateCards) {
+    animateCatalogCards(true);
+  }
 }
 
 // ==========================================================================
@@ -1192,19 +1196,66 @@ function initAdaptiveNavbar() {
 }
 
 // ==========================================================================
-// LENIS SMOOTH SCROLL + LIGHTWEIGHT GSAP ENTRANCES
+// LENIS SMOOTH SCROLL + IMMERSIVE APPLE KEYNOTE SCROLL CHOREOGRAPHY
+// Strictly GPU-composited (transform / opacity / clip-path) for 120fps fluidity
 // ==========================================================================
+const prefersReducedMotion =
+  typeof window !== 'undefined' &&
+  window.matchMedia &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function animateCatalogCards(immediate = false) {
+  if (prefersReducedMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  const cards = gsap.utils.toArray('#product-grid .apple-store-card');
+  if (!cards.length) return;
+
+  if (immediate) {
+    gsap.fromTo(
+      cards,
+      { y: 26, opacity: 0, scale: 0.97 },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.52,
+        stagger: 0.05,
+        ease: 'power3.out',
+        clearProps: 'transform,opacity'
+      }
+    );
+    ScrollTrigger.refresh();
+    return;
+  }
+
+  gsap.set(cards, { opacity: 0, y: 34, scale: 0.97 });
+  ScrollTrigger.batch(cards, {
+    start: 'top 88%',
+    once: true,
+    onEnter: (batch) => {
+      gsap.to(batch, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.65,
+        stagger: 0.08,
+        ease: 'power3.out',
+        clearProps: 'transform,opacity'
+      });
+    }
+  });
+}
+
 function initAnimations() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
   let lenis = null;
-  if (typeof Lenis !== 'undefined') {
+  if (typeof Lenis !== 'undefined' && !prefersReducedMotion) {
     lenis = new Lenis({
-      duration: 1.0,
+      duration: 1.05,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1.5
+      touchMultiplier: 1.4
     });
 
     lenis.on('scroll', ScrollTrigger.update);
@@ -1229,32 +1280,163 @@ function initAnimations() {
     });
   });
 
-  // Hero Keynote Entrance
+  if (prefersReducedMotion) return;
+
+  // 1. Precision Top Scroll Progress Bar
+  const progressBar = document.getElementById('scroll-progress');
+  if (progressBar) {
+    gsap.to(progressBar, {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.25
+      }
+    });
+  }
+
+  // 2. Hero Keynote Entrance + Multi-Plane Depth Parallax
   gsap.from('.hero-reveal', {
-    y: 26,
+    y: 28,
     opacity: 0,
-    duration: 0.85,
+    duration: 0.9,
     stagger: 0.1,
     ease: 'power3.out',
     clearProps: 'transform,opacity'
   });
 
   gsap.from('.hero-device', {
-    y: 36,
+    y: 40,
     opacity: 0,
-    duration: 1.0,
-    delay: 0.25,
+    scale: 0.97,
+    duration: 1.05,
+    delay: 0.22,
     ease: 'power3.out',
     clearProps: 'transform,opacity'
   });
 
-  // Payment Bento Cards Staggered Entrance
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 768px)', () => {
+    gsap.to('.hero-copy-stage', {
+      y: -46,
+      opacity: 0.2,
+      scale: 0.97,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom 35%',
+        scrub: true
+      }
+    });
+
+    gsap.to('.hero-pro-img', {
+      y: -16,
+      scale: 1.08,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  });
+
+  // 3. Masked Editorial Heading Curtain Reveals
+  gsap.utils.toArray('.scroll-reveal-heading').forEach((block) => {
+    gsap.from(block, {
+      y: 30,
+      opacity: 0,
+      clipPath: 'inset(0 0 20% 0)',
+      duration: 0.85,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity,clipPath',
+      scrollTrigger: {
+        trigger: block,
+        start: 'top 86%',
+        once: true
+      }
+    });
+  });
+
+  // 4. Apple.com Lineup Gallery Cards + Optical Image Settle
+  const lineupCards = gsap.utils.toArray('#lineup-carousel .apple-carousel-card');
+  if (lineupCards.length) {
+    gsap.from(lineupCards, {
+      y: 42,
+      opacity: 0,
+      scale: 0.95,
+      duration: 0.8,
+      stagger: 0.08,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: {
+        trigger: '#lineup-carousel',
+        start: 'top 84%',
+        once: true
+      }
+    });
+
+    gsap.from('#lineup-carousel .apple-carousel-card img', {
+      scale: 1.1,
+      duration: 1.1,
+      stagger: 0.08,
+      ease: 'power2.out',
+      clearProps: 'transform',
+      scrollTrigger: {
+        trigger: '#lineup-carousel',
+        start: 'top 84%',
+        once: true
+      }
+    });
+  }
+
+  // 5. Catalog Cards Row-by-Row Batch Cascade
+  animateCatalogCards(false);
+
+  // 6. Plan Canje Scroll-Illuminated Headline & Configurator Depth Entrance
+  gsap.utils.toArray('.scroll-illuminate').forEach((heading) => {
+    gsap.from(heading, {
+      opacity: 0.25,
+      y: 24,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: heading,
+        start: 'top 88%',
+        end: 'top 52%',
+        scrub: 0.6
+      }
+    });
+  });
+
+  if (document.querySelector('.tradein-module')) {
+    gsap.from('.tradein-module', {
+      y: 44,
+      opacity: 0,
+      scale: 0.96,
+      duration: 0.9,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: {
+        trigger: '.tradein-module',
+        start: 'top 84%',
+        once: true
+      }
+    });
+  }
+
+  // 7. Payment Bento 3D Perspective Cascade + Floating Orb Scroll Parallax
   if (document.querySelector('#payment-bento-grid .payment-card')) {
     gsap.from('#payment-bento-grid .payment-card', {
-      y: 34,
+      y: 44,
       opacity: 0,
-      scale: 0.97,
-      duration: 0.7,
+      scale: 0.96,
+      rotateX: 5,
+      transformPerspective: 1000,
+      duration: 0.8,
       stagger: 0.09,
       ease: 'power3.out',
       clearProps: 'transform,opacity',
@@ -1264,7 +1446,82 @@ function initAnimations() {
         once: true
       }
     });
+
+    gsap.to('#payment-bento-grid .payment-orb', {
+      y: -26,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#financiacion',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1
+      }
+    });
   }
+
+  // 8. Showroom Split-Screen Reveal & Map Parallax
+  if (document.querySelector('.showroom-info')) {
+    gsap.from('.showroom-info', {
+      y: 34,
+      opacity: 0,
+      duration: 0.85,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: {
+        trigger: '#nuevo-local',
+        start: 'top 78%',
+        once: true
+      }
+    });
+  }
+
+  if (document.querySelector('.showroom-map')) {
+    gsap.from('.showroom-map', {
+      y: 44,
+      opacity: 0,
+      scale: 0.96,
+      duration: 0.95,
+      delay: 0.1,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: {
+        trigger: '#nuevo-local',
+        start: 'top 78%',
+        once: true
+      }
+    });
+
+    mm.add('(min-width: 1024px)', () => {
+      gsap.to('.showroom-map', {
+        y: -18,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#nuevo-local',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
+    });
+  }
+
+  // 9. Footer Grand Reveal
+  if (document.querySelector('.footer-reveal')) {
+    gsap.from('.footer-reveal', {
+      y: 32,
+      opacity: 0,
+      duration: 0.85,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity',
+      scrollTrigger: {
+        trigger: 'footer',
+        start: 'top 88%',
+        once: true
+      }
+    });
+  }
+
+  ScrollTrigger.refresh();
 }
 
 function initPaymentCardEffects() {
